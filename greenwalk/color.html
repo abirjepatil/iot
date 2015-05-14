@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://developer.relayr.io/relayr-browser-sdk.min.js"></script>
+  
+<script>
+var relayr = RELAYR.init({
+    appId: "19cc14d1-7f8b-41ec-ade1-accb53d26f31"
+  });
+    
+	relayr.devices().getDeviceData({
+	//5b74413e-4938-4d98-ab81-f678a3388dbf
+    deviceId: "d5b05200-3c73-4ea3-90d7-4088771b792e", 
+    token: "DV1wyQA9XUTQNTud6NnVBRiQn_ffCXuG",
+    incomingData: function(data){
+		//data.readings
+		//luminosity
+		var luminosity=data.readings[0].value;
+		
+		//color
+		var R=data.readings[1].value.red;
+		var G=data.readings[1].value.green;
+		var B=data.readings[1].value.blue;
+		
+		//proximity
+		var proximity=data.readings[2].value;
+		//?proximity="+proximity+"& color="+G
+		window.location.replace("http://localhost/iot/updateColor.php?proximity="+proximity+"&color="+G+"&light="+luminosity);
+	  //alert(data);
+    }
+  });    
+  
+  /*
+  //tempreture & humidity
+  relayr1.devices().getDeviceData({
+	//5b74413e-4938-4d98-ab81-f678a3388dbf
+    deviceId: "5b74413e-4938-4d98-ab81-f678a3388dbf", 
+    token: "DV1wyQA9XUTQNTud6NnVBRiQn_ffCXuG",
+    incomingData: function(data){
+		//data.readings
+		//luminosity
+		var temp=data.readings[0].value;
+		//humidity
+	    var humidity=data.readings[1].value;
+		window.location.replace("http://localhost/iot/update.php?temp="+temp+"& humidity="+humidity);
+		//console.log("temp",temp);
+	 
+	  //alert(data);
+    }
+  });    
+  /*
+  //sound
+  relayr2.devices().getDeviceData({
+	//5b74413e-4938-4d98-ab81-f678a3388dbf
+    deviceId: "326163a3-04d7-4631-9b2f-73db7f85d465", 
+    token: "DV1wyQA9XUTQNTud6NnVBRiQn_ffCXuG",
+    incomingData: function(data){
+		//data.readings
+		//sound
+		var sound=data.readings[0].value;
+		window.location.replace("http://localhost/iot/updateSound.php?sound="+sound);
+		console.log("sound",sound);
+	 
+	  //alert(data);
+    }
+  });
+*/
+  
+  </script>
+</head>
+
+
+<body>
+
+</body>
+</html>
